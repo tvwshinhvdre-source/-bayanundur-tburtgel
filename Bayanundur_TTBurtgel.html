@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b6b67">
+<title>Bayanundur T.TBurtgel</title>
+<style>
+:root{--primary:#0b6b67;--primary2:#0f8f86;--ink:#18343a;--muted:#6b7d82;--bg:#f3f7f7;--card:#fff;--line:#dfe9e9;--danger:#c44747;--warn:#c28a1b;--shadow:0 10px 30px rgba(20,60,65,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top right,#d9f3f0,transparent 38%),linear-gradient(135deg,#f7fbfb,#e8f3f2)}
+.login-card{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow)}
+.brand{display:flex;gap:14px;align-items:center}.logo{width:58px;height:58px;border-radius:17px;background:linear-gradient(135deg,var(--primary),#18a79b);display:grid;place-items:center;color:#fff;font-weight:900;font-size:21px;box-shadow:0 8px 20px #0b6b6730}.brand h1{margin:0;font-size:21px}.brand p{margin:4px 0;color:var(--muted);font-size:13px}
+.login-tabs{display:grid;grid-template-columns:1fr 1fr;background:#eef5f5;padding:4px;border-radius:12px;margin:26px 0 18px}.login-tabs button{border:0;background:transparent;padding:11px;border-radius:9px;color:var(--muted)}.login-tabs button.active{background:#fff;color:var(--primary);font-weight:700;box-shadow:0 2px 8px #0000000b}
+label{font-size:13px;font-weight:700;color:#486166;display:block;margin:12px 0 7px}.input{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:11px;outline:none;background:#fbfdfd}.input:focus{border-color:var(--primary2);box-shadow:0 0 0 3px #0b6b6714}
+.btn{border:0;border-radius:11px;padding:12px 16px;font-weight:750}.btn-primary{background:var(--primary);color:#fff}.btn-secondary{background:#eaf4f3;color:var(--primary)}.btn-danger{background:#fff0f0;color:var(--danger)}.btn-full{width:100%;margin-top:16px}.hint{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+.app{display:none;min-height:100vh}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:10}.topbrand{display:flex;align-items:center;gap:12px}.topbrand .mini{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--primary),#1da69b);color:#fff;display:grid;place-items:center;font-weight:900}.topbrand h2{font-size:17px;margin:0}.topbrand span{display:block;color:var(--muted);font-size:11px;margin-top:2px}.top-actions{display:flex;align-items:center;gap:8px}.userpill{background:#eef6f5;color:var(--primary);padding:9px 12px;border-radius:10px;font-size:12px;font-weight:700}
+.layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100vh - 76px)}.sidebar{background:#fff;border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:76px;height:calc(100vh - 76px);overflow:auto}.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8b9b9e;padding:8px 10px}.nav{width:100%;border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:10px;color:#52666a;font-weight:650;margin:2px 0}.nav:hover,.nav.active{background:#eaf5f4;color:var(--primary)}.sidebar-note{margin-top:18px;padding:14px;background:#f4f9f9;border-radius:14px;font-size:12px;color:var(--muted);line-height:1.5}
+main{padding:24px;max-width:1500px;width:100%;margin:auto}.hero{border-radius:22px;padding:24px;color:#fff;background:linear-gradient(120deg,#075e5b,#0d8e84 60%,#3eb7ab);display:flex;justify-content:space-between;gap:20px;align-items:center;box-shadow:var(--shadow);overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:250px;height:250px;border-radius:50%;right:-70px;top:-100px;background:#ffffff12}.hero h1{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#dff7f4;font-size:13px}.hero-right{text-align:right;position:relative;z-index:1}.hero-right strong{font-size:28px;display:block}.hero-right span{font-size:11px;color:#dff7f4}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 4px 15px #173f4310}.stat small{color:var(--muted)}.stat b{font-size:26px;display:block;margin-top:7px}.stat em{font-style:normal;font-size:11px;color:var(--primary)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 4px 15px #173f4308;margin-top:16px}.panel-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}.panel-head h3{margin:0;font-size:16px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.search{min-width:240px}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:880px}.table th,.table td{padding:12px 14px;border-bottom:1px solid #edf2f2;text-align:left;font-size:12px;vertical-align:middle}.table th{font-size:11px;color:#7a8b8e;text-transform:uppercase;letter-spacing:.04em;background:#fbfdfd}.tag{display:inline-flex;padding:5px 8px;border-radius:999px;background:#eef6f5;color:var(--primary);font-size:10px;font-weight:750}.thumb{width:44px;height:44px;border-radius:10px;object-fit:cover;background:#edf4f4;display:grid;place-items:center;color:#789}.empty{padding:35px;text-align:center;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 14px;padding:8px 18px 18px}.full{grid-column:1/-1}.modal-bg{display:none;position:fixed;inset:0;background:#092d2d66;backdrop-filter:blur(3px);z-index:50;padding:18px;overflow:auto}.modal{width:min(720px,100%);margin:30px auto;background:#fff;border-radius:20px;box-shadow:0 20px 70px #0004}.modal-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.modal-head h3{margin:0}.x{border:0;background:#f0f5f5;width:34px;height:34px;border-radius:9px}.modal-body{padding:18px}.modal-foot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+.fab{position:fixed;right:25px;bottom:24px;width:58px;height:58px;border:0;border-radius:18px;background:var(--primary);color:#fff;font-size:28px;box-shadow:0 12px 30px #0b6b6740;z-index:20}.fab-tools{position:fixed;right:25px;bottom:92px;display:flex;flex-direction:column;gap:9px;z-index:19}.tool-btn{width:48px;height:48px;border:0;border-radius:15px;background:#fff;color:var(--primary);box-shadow:var(--shadow);font-size:20px}.hidden{display:none!important}.mobile-menu{display:none}
+.request-list{padding:4px 18px 18px}.request{padding:13px 0;border-bottom:1px solid #edf2f2}.request:last-child{border-bottom:0}.request b{font-size:13px}.request p{margin:4px 0;color:var(--muted);font-size:12px}.request .meta{font-size:11px;color:#8a9b9e}
+.notice-list{padding:8px 18px 18px}.notice{padding:10px 0;border-bottom:1px solid #edf2f2;font-size:13px}.notice small{display:block;color:var(--muted);margin-top:4px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-menu{display:block}.grid{grid-template-columns:repeat(2,1fr)}main{padding:14px}.hero{padding:19px}.topbar{padding:0 13px}.topbrand h2{font-size:15px}.topbrand span{display:none}.userpill{display:none}}
+@media(max-width:560px){.grid{grid-template-columns:1fr 1fr;gap:9px}.stat{padding:13px}.stat b{font-size:21px}.hero{display:block}.hero-right{text-align:left;margin-top:13px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.search{min-width:160px;flex:1}.panel-head{align-items:flex-start;flex-direction:column}.top-actions .btn{padding:9px 10px;font-size:12px}.topbrand .mini{width:38px;height:38px}.topbar{height:65px}.layout{min-height:calc(100vh - 65px)}}
+@media print{.topbar,.sidebar,.fab,.fab-tools,.btn,.panel-head button{display:none!important}.layout{display:block}.page.hidden{display:none!important}main{padding:0}.panel{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+
+<section id="login" class="login">
+  <div class="login-card">
+    <div class="brand"><div class="logo">BT</div><div><h1>Bayanundur T.TBurtgel</h1><p>Эмнэлгийн тоног төхөөрөмжийн мэдээллийн сан</p></div></div>
+    <div class="login-tabs"><button id="tabAdmin" class="active" onclick="setLoginMode('admin')">Админ</button><button id="tabStaff" onclick="setLoginMode('staff')">Ажилтан</button></div>
+    <div id="adminFields">
+      <label>Нэвтрэх нэр</label><input id="loginUser" class="input" value="hvdre95" autocomplete="username">
+      <label>Нууц код</label><input id="loginPass" class="input" type="password" value="0905" autocomplete="current-password">
+    </div>
+    <div id="staffFields" class="hidden">
+      <label>Ажилтны нэр</label><input id="staffName" class="input" placeholder="Жишээ: Б.Энхтүвшин">
+      <label>Нэвтрэх код</label><input id="staffPass" class="input" type="password" value="1234">
+    </div>
+    <button class="btn btn-primary btn-full" onclick="login()">Нэвтрэх</button>
+    <div id="loginMsg" class="hint">Админ эрхээр төхөөрөмж, хүсэлт, мэдээллийн санг удирдана.</div>
+  </div>
+</section>
+
+<section id="app" class="app">
+<header class="topbar">
+  <div class="topbrand"><button class="btn btn-secondary mobile-menu" onclick="toggleSidebar()">☰</button><div class="mini">BT</div><div><h2>Bayanundur T.TBurtgel</h2><span>Medical Equipment Registry</span></div></div>
+  <div class="top-actions"><span id="userPill" class="userpill"></span><button class="btn btn-secondary" onclick="logout()">Гарах</button></div>
+</header>
+<div class="layout">
+<aside id="sidebar" class="sidebar">
+  <div class="nav-title">Үндсэн</div>
+  <button class="nav active" onclick="showPage('dashboard',this)">▦  Хянах самбар</button>
+  <button class="nav" onclick="showPage('equipment',this)">▣  Тоног төхөөрөмж</button>
+  <button class="nav" onclick="showPage('requests',this)">🔧  Засварын дуудлага</button>
+  <button class="nav" onclick="showPage('training',this)">🎓  Сургалтын хүсэлт</button>
+  <button class="nav" onclick="showPage('maintenance',this)">🛠  Үйлчилгээний түүх</button>
+  <button class="nav" onclick="showPage('reports',this)">📑  Тайлан</button>
+  <div class="nav-title">Мэдээлэл</div>
+  <button class="nav" onclick="showPage('info',this)">ⓘ  Тасгийн мэдээлэл</button>
+  <button id="adminNav" class="nav" onclick="showPage('admin',this)">⚙  Админ тохиргоо</button>
+  <div class="sidebar-note">Энэ хувилбарын өгөгдөл тухайн браузерийн санах ойд хадгалагдана. Олон төхөөрөмжөөс хамтран ашиглахын тулд дараагийн шатанд cloud database холбож болно.</div>
+</aside>
+
+<main>
+<section id="page-dashboard" class="page">
+  <div class="hero"><div><h1>Тоног төхөөрөмжийн бүртгэл</h1><p>Баян-өндөрмед эмнэлгийн эмнэлгийн тоног төхөөрөмжийн нэгдсэн мэдээллийн сан.</p></div><div class="hero-right"><strong id="heroTotal">0</strong><span>Нийт бүртгэлтэй төхөөрөмж</span></div></div>
+  <div class="grid">
+    <div class="stat"><small>Нийт төхөөрөмж</small><b id="sTotal">0</b><em>Бүртгэл</em></div>
+    <div class="stat"><small>Техник карттай</small><b id="sCards">0</b><em>Бүрэн мэдээлэл</em></div>
+    <div class="stat"><small>Засварын хүсэлт</small><b id="sRepair">0</b><em>Хүлээгдэж буй</em></div>
+    <div class="stat"><small>Сургалтын хүсэлт</small><b id="sTraining">0</b><em>Хүсэлт</em></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h3>Сүүлд нэвтэрсэн ажилтнууд</h3><span class="tag">LIVE</span></div><div id="logins" class="request-list"></div></div>
+  <div class="panel"><div class="panel-head"><h3>Сүүлд бүртгэгдсэн төхөөрөмжүүд</h3><button class="btn btn-secondary" onclick="showPage('equipment')">Бүгдийг харах</button></div><div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Зураг</th><th>Төхөөрөмж</th><th>Марк</th><th>Байршил</th><th>Эд хариуцагч</th></tr></thead><tbody id="recentDevices"></tbody></table></div></div>
+</section>
+
+<section id="page-equipment" class="page hidden">
+  <div class="panel"><div class="panel-head"><h3>Эмнэлгийн тоног төхөөрөмжийн бүртгэл</h3><div class="toolbar"><input id="search" class="input search" placeholder="Нэр, марк, байршлаар хайх..." oninput="renderEquipment()"><button id="addBtn" class="btn btn-primary" onclick="openDevice()">＋ Бүртгэх</button></div></div><div class="table-wrap"><table class="table"><thead><tr><th>№</th><th>Зураг</th><th>Төхөөрөмжийн нэр</th><th>Үйлдвэрлэсэн он</th><th>Ашиглаж эхэлсэн</th><th>Марк</th><th>Нийлүүлэгч</th><th>Байршил</th><th>Эд хариуцагч</th><th>Карт</th><th>Үйлдэл</th></tr></thead><tbody id="equipmentBody"></tbody></table></div></div>
+</section>
+
+<section id="page-requests" class="page hidden"><div class="panel"><div class="panel-head"><h3>🔧 Засварын дуудлага & санал</h3><span id="repairBadge" class="tag"></span></div><div id="repairList" class="request-list"></div></div></section>
+<section id="page-maintenance" class="page hidden"><div class="panel"><div class="panel-head"><h3>🛠 Техник үйлчилгээний түүх</h3><button class="btn btn-primary" onclick="openMaintenance()">＋ Үйлчилгээ бүртгэх</button></div><div id="maintenanceList" class="request-list"></div></div></section>
+<section id="page-reports" class="page hidden"><div class="panel"><div class="panel-head"><h3>📑 Бүртгэлийн тайлан</h3><button class="btn btn-secondary" onclick="printReport()">Хэвлэх / PDF</button></div><div id="reportContent" class="notice-list"></div></div></section>
+<section id="page-training" class="page hidden"><div class="panel"><div class="panel-head"><h3>🎓 Сургалт захиалах</h3><button class="btn btn-primary" onclick="openTraining()">＋ Хүсэлт өгөх</button></div><div id="trainingList" class="request-list"></div></div></section>
+<section id="page-info" class="page hidden"><div class="panel"><div class="panel-head"><h3>ⓘ Тасгийн мэдээлэл</h3></div><div id="infoContent" class="notice-list"></div></div></section>
+<section id="page-admin" class="page hidden"><div class="panel"><div class="panel-head"><h3>⚙ Админ тохиргоо</h3></div><div class="notice-list">
+<label>Дээд хэсгийн гарчиг</label><input id="setTitle" class="input">
+<label>Дэд тайлбар</label><input id="setSubtitle" class="input">
+<label>Тасгийн мэдээлэл</label><textarea id="setInfo" class="input" rows="7"></textarea>
+<button class="btn btn-primary" onclick="saveSettings()">Хадгалах</button>
+<button class="btn btn-danger" onclick="resetDemo()" style="margin-left:8px">Демо өгөгдөл цэвэрлэх</button>
+</div></div></section>
+</main>
+</div>
+<button class="fab" onclick="toggleFab()">＋</button>
+<div id="fabTools" class="fab-tools hidden"><button class="tool-btn" title="Засварын дуудлага" onclick="openRepair()">🔧</button><button class="tool-btn" title="Сургалт захиалах" onclick="openTraining()">🎓</button></div>
+</section>
+
+<div id="modalBg" class="modal-bg" onclick="if(event.target===this)closeModal()"><div id="modal" class="modal"></div></div>
+
+<script>
+const ADMIN={user:'hvdre95',pass:'0905'}, STAFF_PASS='1234';
+let mode='admin', currentUser='', editId=null;
+const key='bayanundur_tburtgel_v1';
+const defaultData={
+ settings:{title:'Баян-өндөрмед эмнэлэг',subtitle:'Эмнэлгийн тоног төхөөрөмжийн мэдээллийн сан',info:'Эмнэлгийн тоног төхөөрөмжийн бүртгэл, ашиглалт, техникийн үйлчилгээтэй холбоотой мэдээллийг нэг дор төвлөрүүлэн хөтөлнө.'},
+ devices:[
+  {id:1,name:'Зөөврийн хэт авиан оношилгооны аппарат',made:'2024',start:'2024',brand:'Mindray DP-30',supplier:'Эмнэлгийн тоног төхөөрөмж нийлүүлэгч ХХК',location:'ЭХО өрөө',owner:'Б.Бат',card:'Тийм',other:'Үндсэн үзлэгт ашиглана',image:'',createdBy:'Админ',createdAt:'2026-09-28'},
+  {id:2,name:'Өвчтөний монитор',made:'2023',start:'2023',brand:'Mindray uMEC12',supplier:'Медтех сервис',location:'Эрчимт эмчилгээний тасаг',owner:'Д.Од',card:'Тийм',other:'',image:'',createdBy:'Админ',createdAt:'2026-09-27'},
+  {id:3,name:'Автоклав',made:'2022',start:'2022',brand:'Tuttnauer 3870',supplier:'Эмнэлгийн тоног төхөөрөмжийн газар',location:'Ариутгалын хэсэг',owner:'С.Эрдэнэ',card:'Үгүй',other:'Техникийн карт нөхөн бүрдүүлэх',image:'',createdBy:'Админ',createdAt:'2026-09-26'}
+ ],
+ logins:[{name:'Админ',role:'Админ',time:'2026-09-28 17:40'},{name:'Б.Энхтүвшин',role:'Ажилтан',time:'2026-09-28 16:25'}],
+ repairs:[], trainings:[], maintenance:[]
+};
+function load(){let d=localStorage.getItem(key);return d?JSON.parse(d):structuredClone(defaultData)}
+let data=load(); data.maintenance=data.maintenance||[]; data.settings=data.settings||structuredClone(defaultData.settings);
+function save(){localStorage.setItem(key,JSON.stringify(data));}
+function setLoginMode(m){mode=m;tabAdmin.classList.toggle('active',m==='admin');tabStaff.classList.toggle('active',m==='staff');adminFields.classList.toggle('hidden',m!=='admin');staffFields.classList.toggle('hidden',m!=='staff');loginMsg.textContent=m==='admin'?'Админ эрхээр төхөөрөмж, хүсэлт, мэдээллийн санг удирдана.':'Ажилтны нэрээ оруулж системд нэвтэрнэ.'}
+function login(){
+ if(mode==='admin'){if(loginUser.value!==ADMIN.user||loginPass.value!==ADMIN.pass){loginMsg.textContent='Нэвтрэх нэр эсвэл код буруу байна.';return}currentUser='Админ';}
+ else {if(staffPass.value!==STAFF_PASS||!staffName.value.trim()){loginMsg.textContent='Нэр болон зөв нэвтрэх кодоо оруулна уу.';return}currentUser=staffName.value.trim();}
+ data.logins.unshift({name:currentUser,role:mode==='admin'?'Админ':'Ажилтан',time:new Date().toLocaleString('mn-MN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})});data.logins=data.logins.slice(0,30);save();
+ login.style.display='none';app.style.display='block';userPill.textContent=currentUser+' · '+(mode==='admin'?'Админ':'Ажилтан');adminNav.style.display=mode==='admin'?'block':'none';addBtn.style.display=mode==='admin'?'inline-block':'none';renderAll();
+}
+function logout(){app.style.display='none';login.style.display='grid';}
+function toggleSidebar(){sidebar.style.display=sidebar.style.display==='block'?'none':'block'}
+function showPage(page,el){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById('page-'+page).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');if(page==='equipment')renderEquipment();if(page==='requests')renderRepairs();if(page==='training')renderTrainings();if(page==='maintenance')renderMaintenance();if(page==='reports')renderReports();if(page==='info')renderInfo();}
+function renderAll(){renderDashboard();renderEquipment();renderRepairs();renderTrainings();renderMaintenance();renderReports();renderInfo();renderSettings();}
+function renderDashboard(){
+ const total=data.devices.length,cards=data.devices.filter(x=>x.card==='Тийм').length;
+ heroTotal.textContent=total;sTotal.textContent=total;sCards.textContent=cards;sRepair.textContent=data.repairs.length;sTraining.textContent=data.trainings.length;
+ logins.innerHTML=data.logins.length?data.logins.slice(0,8).map(x=>`<div class="request"><b>${esc(x.name)}</b> <span class="tag">${esc(x.role)}</span><p>Системд нэвтэрсэн</p><div class="meta">${esc(x.time)}</div></div>`).join(''):'<div class="empty">Нэвтрэлтийн түүх алга.</div>';
+ recentDevices.innerHTML=data.devices.slice(0,5).map((d,i)=>row(d,i+1,true)).join('');
+}
+function row(d,n,recent=false){return `<tr><td>${n}</td><td>${d.image?`<img class="thumb" src="${d.image}">`:'<div class="thumb">⚕</div>'}</td><td><b>${esc(d.name)}</b><div class="meta">${esc(d.other||'')}</div></td><td>${esc(d.made||'-')}</td><td>${esc(d.start||'-')}</td><td>${esc(d.brand||'-')}</td><td>${esc(d.supplier||'-')}</td><td>${esc(d.location||'-')}</td><td>${esc(d.owner||'-')}</td><td><span class="tag">${esc(d.card||'Тодорхойгүй')}</span></td>${recent?'':`<td><button class="btn btn-secondary" onclick="openDevice(${d.id})">Засах</button></td>`}</tr>`}
+function renderEquipment(){let q=(search?.value||'').toLowerCase();let arr=data.devices.filter(d=>[d.name,d.brand,d.location,d.owner,d.supplier].join(' ').toLowerCase().includes(q));equipmentBody.innerHTML=arr.length?arr.map((d,i)=>row(d,i+1,false)).join(''):'<tr><td colspan="11"><div class="empty">Тохирох төхөөрөмж олдсонгүй.</div></td></tr>'}
+function openDevice(id=null){if(mode!=='admin')return;editId=id;let d=id?data.devices.find(x=>x.id===id):{name:'',made:'',start:'',brand:'',supplier:'',location:'',owner:'',card:'Үгүй',other:'',image:''};modal.innerHTML=`<div class="modal-head"><h3>${id?'Төхөөрөмжийн мэдээлэл засах':'Шинэ тоног төхөөрөмж бүртгэх'}</h3><button class="x" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form-grid">
+<div class="full"><label>Тоног төхөөрөмжийн нэр *</label><input id="fName" class="input" value="${attr(d.name)}"></div>
+<div><label>Үйлдвэрлэсэн он</label><input id="fMade" class="input" type="number" value="${attr(d.made)}"></div>
+<div><label>Манай байгууллагад ашиглаж эхэлсэн он</label><input id="fStart" class="input" type="number" value="${attr(d.start)}"></div>
+<div><label>Тоног төхөөрөмжийн марк / загвар</label><input id="fBrand" class="input" value="${attr(d.brand)}"></div>
+<div><label>Нийлүүлсэн байгууллага</label><input id="fSupplier" class="input" value="${attr(d.supplier)}"></div>
+<div><label>Өрөөний / байршил</label><input id="fLocation" class="input" value="${attr(d.location)}"></div>
+<div><label>Эд хариуцагч</label><input id="fOwner" class="input" value="${attr(d.owner)}"></div>
+<div><label>Техник ашиглалтын карттай эсэх</label><select id="fCard" class="input"><option ${d.card==='Тийм'?'selected':''}>Тийм</option><option ${d.card==='Үгүй'?'selected':''}>Үгүй</option></select></div>
+<div class="full"><label>Бусад мэдээлэл</label><textarea id="fOther" class="input" rows="4">${esc(d.other||'')}</textarea></div>
+<div class="full"><label>Төхөөрөмжийн зураг <span style="font-weight:400;color:#8a9b9e">(утсаар орвол камераар шууд авах боломжтой)</span></label><input id="fImage" class="input" type="file" accept="image/*" capture="environment"></div>
+</div></div><div class="modal-foot"><button class="btn btn-secondary" onclick="closeModal()">Болих</button><button class="btn btn-primary" onclick="saveDevice()">Хадгалах</button></div>`;modalBg.style.display='block'}
+function saveDevice(){let name=fName.value.trim();if(!name){alert('Төхөөрөмжийн нэрийг оруулна уу.');return}let base={name,made:fMade.value,start:fStart.value,brand:fBrand.value.trim(),supplier:fSupplier.value.trim(),location:fLocation.value.trim(),owner:fOwner.value.trim(),card:fCard.value,other:fOther.value.trim(),createdBy:currentUser,createdAt:new Date().toLocaleDateString('mn-MN')};let file=fImage.files[0];const finish=(img)=>{base.image=img||'';if(editId){Object.assign(data.devices.find(x=>x.id===editId),base)}else{base.id=Date.now();data.devices.unshift(base)}save();closeModal();renderAll()};if(file){let r=new FileReader();r.onload=()=>finish(r.result);r.readAsDataURL(file)}else finish(editId?data.devices.find(x=>x.id===editId).image:'')}
+function openRepair(){modal.innerHTML=`<div class="modal-head"><h3>🔧 Засварын дуудлага & санал</h3><button class="x" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form-grid"><div class="full"><label>Төхөөрөмжийн нэр *</label><input id="rName" class="input" placeholder="Төхөөрөмжөө сонгох эсвэл бичих"></div><div><label>Байршил</label><input id="rLocation" class="input"></div><div><label>Дуудлага өгсөн хүн</label><input id="rBy" class="input" value="${attr(currentUser)}"></div><div class="full"><label>Эвдрэлийн шалтгаан / асуудлын тайлбар *</label><textarea id="rReason" class="input" rows="5" placeholder="Ямар асуудал гарсан талаар дэлгэрэнгүй..."></textarea></div></div></div><div class="modal-foot"><button class="btn btn-secondary" onclick="closeModal()">Болих</button><button class="btn btn-primary" onclick="saveRepair()">Илгээх</button></div>`;modalBg.style.display='block'}
+function saveRepair(){if(!rName.value.trim()||!rReason.value.trim()){alert('Төхөөрөмжийн нэр болон асуудлын тайлбарыг оруулна уу.');return}data.repairs.unshift({id:Date.now(),name:rName.value.trim(),location:rLocation.value.trim(),by:rBy.value.trim()||currentUser,reason:rReason.value.trim(),time:new Date().toLocaleString('mn-MN'),status:'Шинэ'});save();closeModal();renderAll();alert('Засварын дуудлага админд бүртгэгдлээ.')}
+function renderRepairs(){repairBadge.textContent=data.repairs.length+' хүсэлт';repairList.innerHTML=data.repairs.length?data.repairs.map(r=>`<div class="request"><b>${esc(r.name)}</b> <span class="tag">${esc(r.status)}</span><p>📍 ${esc(r.location||'-')} · 👤 ${esc(r.by)}</p><p>${esc(r.reason)}</p><div class="meta">${esc(r.time)}</div>${mode==='admin'?`<div style="margin-top:8px"><button class="btn btn-secondary" onclick="closeRepair(${r.id})">${r.status==='Шинэ'?'Шийдвэрлэсэн':'Дахин нээх'}</button></div>`:''}</div>`).join(''):'<div class="empty">Одоогоор засварын дуудлага алга.</div>'}
+function closeRepair(id){let r=data.repairs.find(x=>x.id===id);r.status=r.status==='Шинэ'?'Шийдвэрлэсэн':'Шинэ';save();renderAll()}
+function openTraining(){modal.innerHTML=`<div class="modal-head"><h3>🎓 Сургалт захиалах</h3><button class="x" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form-grid"><div class="full"><label>Тоног төхөөрөмжийн нэр *</label><input id="tName" class="input"></div><div><label>Байршил</label><input id="tLocation" class="input"></div><div><label>Нэр, утас (шаардлагатай бол)</label><input id="tContact" class="input" placeholder="Жишээ: Б.Бат 9911xxxx"></div><div class="full"><label>Сургалтаар юу орох талаар *</label><textarea id="tTopic" class="input" rows="5" placeholder="Ашиглалт, аюулгүй ажиллагаа, цэвэрлэгээ, анхан шатны засвар гэх мэт"></textarea></div></div></div><div class="modal-foot"><button class="btn btn-secondary" onclick="closeModal()">Болих</button><button class="btn btn-primary" onclick="saveTraining()">Илгээх</button></div>`;modalBg.style.display='block'}
+function saveTraining(){if(!tName.value.trim()||!tTopic.value.trim()){alert('Төхөөрөмжийн нэр болон сургалтын агуулгыг оруулна уу.');return}data.trainings.unshift({id:Date.now(),name:tName.value.trim(),location:tLocation.value.trim(),contact:tContact.value.trim(),topic:tTopic.value.trim(),by:currentUser,time:new Date().toLocaleString('mn-MN'),status:'Шинэ'});save();closeModal();renderAll();alert('Сургалтын хүсэлт админд бүртгэгдлээ.')}
+function renderTrainings(){trainingList.innerHTML=data.trainings.length?data.trainings.map(r=>`<div class="request"><b>${esc(r.name)}</b> <span class="tag">${esc(r.status)}</span><p>📍 ${esc(r.location||'-')} · 👤 ${esc(r.by)}</p><p>${esc(r.topic)}</p>${r.contact?`<p>☎ ${esc(r.contact)}</p>`:''}<div class="meta">${esc(r.time)}</div>${mode==='admin'?`<div style="margin-top:8px"><button class="btn btn-secondary" onclick="toggleTraining(${r.id})">${r.status==='Шинэ'?'Хүлээн авсан':'Шинэ болгох'}</button></div>`:''}</div>`).join(''):'<div class="empty">Одоогоор сургалтын хүсэлт алга.</div>'}
+function toggleTraining(id){let r=data.trainings.find(x=>x.id===id);r.status=r.status==='Шинэ'?'Хүлээн авсан':'Шинэ';save();renderAll()}
+
+function openMaintenance(){
+ if(mode!=='admin'){alert('Техник үйлчилгээний түүхийг админ бүртгэнэ.');return}
+ modal.innerHTML=`<div class="modal-head"><h3>🛠 Техник үйлчилгээ бүртгэх</h3><button class="x" onclick="closeModal()">×</button></div>
+ <div class="modal-body"><div class="form-grid">
+ <div class="full"><label>Төхөөрөмжийн нэр *</label><input id="mName" class="input" placeholder="Төхөөрөмжийн нэр"></div>
+ <div><label>Үйлчилгээний огноо</label><input id="mDate" class="input" type="date"></div>
+ <div><label>Үйлчилгээний төрөл</label><select id="mType" class="input"><option>Урьдчилан сэргийлэх үзлэг</option><option>Техник үйлчилгээ</option><option>Засвар</option><option>Тохируулга / шалгалт</option></select></div>
+ <div><label>Үйлчилгээ хийсэн хүн / байгууллага</label><input id="mBy" class="input"></div>
+ <div><label>Дараагийн үйлчилгээний огноо</label><input id="mNext" class="input" type="date"></div>
+ <div class="full"><label>Хийсэн ажил / тэмдэглэл</label><textarea id="mNote" class="input" rows="4"></textarea></div>
+ </div></div><div class="modal-foot"><button class="btn btn-secondary" onclick="closeModal()">Болих</button><button class="btn btn-primary" onclick="saveMaintenance()">Хадгалах</button></div>`;
+ modalBg.style.display='block';
+}
+function saveMaintenance(){
+ if(!mName.value.trim()){alert('Төхөөрөмжийн нэрийг оруулна уу.');return}
+ data.maintenance.unshift({id:Date.now(),name:mName.value.trim(),date:mDate.value||new Date().toISOString().slice(0,10),type:mType.value,by:mBy.value.trim()||currentUser,next:mNext.value,note:mNote.value.trim(),createdBy:currentUser});
+ save();closeModal();renderAll();
+}
+function renderMaintenance(){
+ maintenanceList.innerHTML=data.maintenance.length?data.maintenance.map(x=>`<div class="request"><b>${esc(x.name)}</b> <span class="tag">${esc(x.type)}</span><p>Огноо: ${esc(x.date)} · Хийсэн: ${esc(x.by)}</p><p>${esc(x.note||'Тэмдэглэлгүй')}</p>${x.next?`<div class="meta">Дараагийн үйлчилгээ: ${esc(x.next)}</div>`:''}</div>`).join(''):'<div class="empty">Үйлчилгээний түүх бүртгэгдээгүй байна.</div>';
+}
+function renderReports(){
+ const total=data.devices.length, cards=data.devices.filter(x=>x.card==='Тийм').length;
+ const locations={}; data.devices.forEach(x=>locations[x.location||'Байршилгүй']=(locations[x.location||'Байршилгүй']||0)+1);
+ reportContent.innerHTML=`<div class="notice"><b>Нийт төхөөрөмж: ${total}</b><small>Техник ашиглалтын карттай: ${cards} · Картгүй: ${total-cards}</small></div>
+ <div class="notice"><b>Байршлаар</b><small>${Object.entries(locations).map(([k,v])=>esc(k)+': '+v).join(' · ')||'Мэдээлэл алга'}</small></div>
+ <div class="notice"><b>Хүсэлтүүд</b><small>Засвар: ${data.repairs.length} · Сургалт: ${data.trainings.length} · Үйлчилгээний бүртгэл: ${data.maintenance.length}</small></div>`;
+}
+function printReport(){
+ showPage('reports');
+ setTimeout(()=>window.print(),150);
+}
+function renderInfo(){infoContent.innerHTML=`<div class="notice"><b>${esc(data.settings.title)}</b><small>${esc(data.settings.subtitle)}</small></div><div class="notice">${esc(data.settings.info)}</div><div class="notice"><b>Системийн боломжууд</b><small>Төхөөрөмжийн бүртгэл · зураг · техник ашиглалтын карт · засварын хүсэлт · сургалтын хүсэлт · нэвтрэлтийн түүх · хайлт</small></div>`}
+function renderSettings(){setTitle.value=data.settings.title;setSubtitle.value=data.settings.subtitle;setInfo.value=data.settings.info}
+function saveSettings(){data.settings={title:setTitle.value.trim()||'Баян-өндөрмед эмнэлэг',subtitle:setSubtitle.value.trim(),info:setInfo.value.trim()};save();renderAll();alert('Тохиргоо хадгалагдлаа.')}
+function resetDemo(){if(confirm('Демо өгөгдлийг цэвэрлэх үү?')){localStorage.removeItem(key);location.reload()}}
+function closeModal(){modalBg.style.display='none';modal.innerHTML=''}
+function toggleFab(){fabTools.classList.toggle('hidden')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function attr(s){return esc(s).replace(/"/g,'&quot;')}
+</script>
+</body>
+</html>
