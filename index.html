@@ -35,8 +35,8 @@ main{padding:24px;max-width:1500px;width:100%;margin:auto}.hero{border-radius:22
 <section id="login" class="login">
   <div class="login-card">
     <div class="brand"><div class="logo">BT</div><div><h1>Bayanundur T.TBurtgel</h1><p>Эмнэлгийн тоног төхөөрөмжийн мэдээллийн сан</p></div></div>
-    <div class="login-tabs"><button id="tabAdmin" class="active" onclick="setLoginMode('admin')">Админ</button><button id="tabStaff" onclick="setLoginMode('staff')">Ажилтан</button></div>
-    <div id="adminFields">
+    <div class="login-tabs"><button id="tabAdmin" class="active"">Админ</button><button id="tabStaff" onclick="setLoginMode('staff')">Ажилтан</button></div>
+    <div id="adminFields"onclick="doLogin()"
       <label>Нэвтрэх нэр</label><input id="loginUser" class="input" value="hvdre95" autocomplete="username">
       <label>Нууц код</label><input id="loginPass" class="input" type="password" value="0905" autocomplete="current-password">
     </div>
@@ -124,7 +124,7 @@ function load(){let d=localStorage.getItem(key);return d?JSON.parse(d):structure
 let data=load(); data.maintenance=data.maintenance||[]; data.settings=data.settings||structuredClone(defaultData.settings);
 function save(){localStorage.setItem(key,JSON.stringify(data));}
 function setLoginMode(m){mode=m;tabAdmin.classList.toggle('active',m==='admin');tabStaff.classList.toggle('active',m==='staff');adminFields.classList.toggle('hidden',m!=='admin');staffFields.classList.toggle('hidden',m!=='staff');loginMsg.textContent=m==='admin'?'Админ эрхээр төхөөрөмж, хүсэлт, мэдээллийн санг удирдана.':'Ажилтны нэрээ оруулж системд нэвтэрнэ.'}
-function login(){
+function doLogin(){
  if(mode==='admin'){if(loginUser.value!==ADMIN.user||loginPass.value!==ADMIN.pass){loginMsg.textContent='Нэвтрэх нэр эсвэл код буруу байна.';return}currentUser='Админ';}
  else {if(staffPass.value!==STAFF_PASS||!staffName.value.trim()){loginMsg.textContent='Нэр болон зөв нэвтрэх кодоо оруулна уу.';return}currentUser=staffName.value.trim();}
  data.logins.unshift({name:currentUser,role:mode==='admin'?'Админ':'Ажилтан',time:new Date().toLocaleString('mn-MN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})});data.logins=data.logins.slice(0,30);save();
